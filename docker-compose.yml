@@ -1,0 +1,37 @@
+services:
+  ns-setup:
+    image: alpine:3.20
+    container_name: ns-setup
+    command: sh /scripts/setup.sh
+    volumes:
+      - ns_data:/temp
+      - ./scripts/setup.sh:/scripts/setup.sh:ro
+    restart: "no"
+
+  ns-server:
+    image: jives/hlds:valve
+    container_name: ns-server
+    environment:
+      - GAME=ns
+    volumes:
+      - ns_data:/temp
+      - ./config/server.cfg:/temp/mods/ns/server.cfg:ro  # Mount only the config file
+      - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro  # Mount individual files
+      - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
+    ports:
+      - "27015:27015/udp"
+      - "27015:27015"
+      - "26900:26900/udp"
+    command: >
+      +log on
+      +maxplayers 16
+      +map ns_eclipse
+      +sv_lan 1
+      +exec server.cfg
+    restart: unless-stopped
+    depends_on:
+      ns-setup:
+        condition: service_completed_successfully
+
+volumes:
+  ns_data:
