@@ -2,7 +2,7 @@
 data/
 
 # Logs directory - contains server log files
-logs/
+logs/*
 
 # Docker volumes
 *.log

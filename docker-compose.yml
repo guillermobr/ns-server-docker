@@ -5,6 +5,7 @@ services:
     command: sh /scripts/setup.sh
     volumes:
       - ./data:/temp
+      - ./mods:/mods
       - ./scripts/setup.sh:/scripts/setup.sh:ro
     restart: "no"
     networks:
@@ -17,30 +18,21 @@ services:
       - GAME=ns
     volumes:
       - ./data:/temp
-      - ./logs:/opt/hlds/logs
       - ./config/server.cfg:/temp/mods/ns/server.cfg:ro
       - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro
       - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
-      - ./config/liblist.gam:/temp/mods/ns/liblist.gam:ro
-      - ./config/metamod_plugins.ini:/temp/mods/ns/addons/metamod/plugins.ini:ro
     ports:
       - "27015:27015/udp"
       - "27015:27015"
       - "26900:26900/udp"
-    # Uncomment to debug container instead of starting server
-    command: tail -f /dev/null
-    # command: >
-    #   +log on
-    #   +maxplayers 16
-    #   +map ns_eclipse
-    #   +sv_lan 0
-    #   +exec server.cfg
+    command: >
+      +log on
+      +maxplayers 16
+      +map ns_eclipse
+      +exec server.cfg
     restart: unless-stopped
     networks:
       - ns-network
-    depends_on:
-      ns-setup:
-        condition: service_completed_successfully
 
 networks:
   ns-network:

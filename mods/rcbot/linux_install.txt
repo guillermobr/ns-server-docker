@@ -1,0 +1,35 @@
+How to install linux RCBot:
+
+Follow instructions below:
+
+-------
+Linux : 
+-------
+WITHOUT METAMOD:
+
+make sure all bot files are in the [Half-Life folder]/rcbot directory.
+
+Open the liblist.gam file and then EDIT the line:
+
+gamedll_linux "<MOD_DLL>"
+
+to 
+
+gamedll_linux "../rcbot/dlls/rcbot_i486.so"
+
+--------------------------------------------------------------
+WITH METAMOD:
+
+Make sure you have downloaded the METAMOD version of the bot for LINUX.
+
+Extract the zip into the Half-life folder, make sure all files are
+in the Half-Life folder/rcbot directory.
+
+Go into addons/metamod directory and EDIT the plugins.ini file
+
+Add the line:
+
+linux ../rcbot/dlls/rcbot_mm_i486.so
+
+to the file.
+
