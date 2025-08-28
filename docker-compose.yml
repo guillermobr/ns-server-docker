@@ -21,20 +21,20 @@ services:
       - ./config/server.cfg:/temp/mods/ns/server.cfg:ro
       - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro
       - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
+      - ./config/liblist.gam:/temp/mods/ns/liblist.gam:ro
       - ./config/metamod_plugins.ini:/temp/mods/ns/addons/metamod/plugins.ini:ro
-      - ./config/users.ini:/temp/mods/ns/addons/amxmodx/configs/users.ini:ro
-      - ./config/plugins.ini:/temp/mods/ns/addons/amxmodx/configs/plugins.ini:ro
-      - ./config/amxx.cfg:/temp/mods/ns/addons/amxmodx/configs/amxx.cfg:ro
     ports:
       - "27015:27015/udp"
       - "27015:27015"
       - "26900:26900/udp"
-    command: >
-      +log on
-      +maxplayers 16
-      +map ns_eclipse
-      +sv_lan 0
-      +exec server.cfg
+    # Uncomment to debug container instead of starting server
+    command: tail -f /dev/null
+    # command: >
+    #   +log on
+    #   +maxplayers 16
+    #   +map ns_eclipse
+    #   +sv_lan 0
+    #   +exec server.cfg
     restart: unless-stopped
     networks:
       - ns-network
