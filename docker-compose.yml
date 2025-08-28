@@ -21,6 +21,7 @@ services:
       - ./config/server.cfg:/temp/mods/ns/server.cfg:ro
       - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro
       - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
+      - ./config/metamod_plugins.ini:/temp/mods/ns/addons/metamod/plugins.ini:ro
       - ./config/users.ini:/temp/mods/ns/addons/amxmodx/configs/users.ini:ro
       - ./config/plugins.ini:/temp/mods/ns/addons/amxmodx/configs/plugins.ini:ro
       - ./config/amxx.cfg:/temp/mods/ns/addons/amxmodx/configs/amxx.cfg:ro
