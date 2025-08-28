@@ -16,3 +16,4 @@ logs/
 ehthumbs.db
 Thumbs.db
 config/admins.cfg
+config/users.ini

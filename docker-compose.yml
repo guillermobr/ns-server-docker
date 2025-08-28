@@ -7,6 +7,8 @@ services:
       - ./data:/temp
       - ./scripts/setup.sh:/scripts/setup.sh:ro
     restart: "no"
+    networks:
+      - ns-network
 
   ns-server:
     image: jives/hlds:valve
@@ -19,8 +21,9 @@ services:
       - ./config/server.cfg:/temp/mods/ns/server.cfg:ro
       - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro
       - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
-      - ./config/admins.cfg:/temp/mods/ns/addons/amxmodx/configs/admins.cfg:ro
+      - ./config/users.ini:/temp/mods/ns/addons/amxmodx/configs/users.ini:ro
       - ./config/plugins.ini:/temp/mods/ns/addons/amxmodx/configs/plugins.ini:ro
+      - ./config/amxx.cfg:/temp/mods/ns/addons/amxmodx/configs/amxx.cfg:ro
     ports:
       - "27015:27015/udp"
       - "27015:27015"
@@ -32,6 +35,12 @@ services:
       +sv_lan 0
       +exec server.cfg
     restart: unless-stopped
+    networks:
+      - ns-network
     depends_on:
       ns-setup:
         condition: service_completed_successfully
+
+networks:
+  ns-network:
+    driver: bridge
