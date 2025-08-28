@@ -1,35 +1,30 @@
-# Natural Selection 3.3b9 HLDS Server (Docker)
+# Natural Selection Server Docker
 
-This repo contains a ready-to-run Docker setup for hosting a **Natural Selection v3.3b9 (ENSL)** server.
+A Docker Compose setup for running a Natural Selection (Half-Life mod) dedicated server.
 
-## Usage
+## Quick Start
 
-1. **Clone this repo:**
-   ```bash
-   git clone https://github.com/guillermobr/ns-server-docker
-   cd ns-server-docker
-   ```
+```bash
+docker-compose up -d
+```
 
-2. **Start the setup (downloads NS mod once):**
-   ```bash
-   docker compose up ns-setup
-   ```
-
-3. **Start the server:**
-   ```bash
-   docker compose up -d ns-server
-   ```
-
-4. **Join your server:**
-   ```
-   connect <your-ip>:27015
-   ```
-
-## Requirements
-
-- Docker
-- Docker Compose
+Server available on port 27015 (UDP/TCP)
 
 ## Configuration
 
-Edit the configuration files as needed before starting the server.
+- `config/server.cfg` - Server settings
+- `config/mapcycle.txt` - Map rotation
+- `config/motd.txt` - Message of the day
+- `mods/` - Custom mods (copied during setup)
+
+## Services
+
+- **ns-setup**: Downloads/installs Natural Selection v3.3b9
+- **ns-server**: Runs the dedicated server
+
+## Features
+
+- Automatic NS installation with caching
+- Metamod configuration
+- Custom mod support
+- Persistent data storage
