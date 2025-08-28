@@ -1,13 +1,5 @@
-Welcome to Natural Selection!
+Welcome to NS!
 
-This server is running NS v3.3b9 (ENSL)
 Have fun and play fair!
 
-Rules:
-- No cheating
-- Respect other players
-- Have fun!
-
-Server Info:
-- Type "status" for server details
-- Type "retry" to reconnect
+No cheating - Respect others

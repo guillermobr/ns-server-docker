@@ -16,9 +16,11 @@ services:
     volumes:
       - ./data:/temp
       - ./logs:/opt/hlds/logs
-      # - ./config/server.cfg:/temp/mods/ns/server.cfg:ro
-      # - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro
-      # - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
+      - ./config/server.cfg:/temp/mods/ns/server.cfg:ro
+      - ./config/mapcycle.txt:/temp/mods/ns/mapcycle.txt:ro
+      - ./config/motd.txt:/temp/mods/ns/motd.txt:ro
+      - ./config/admins.cfg:/temp/mods/ns/addons/amxmodx/configs/admins.cfg:ro
+      - ./config/plugins.ini:/temp/mods/ns/addons/amxmodx/configs/plugins.ini:ro
     ports:
       - "27015:27015/udp"
       - "27015:27015"
@@ -28,7 +30,7 @@ services:
       +maxplayers 16
       +map ns_eclipse
       +sv_lan 0
-      # +exec server.cfg
+      +exec server.cfg
     restart: unless-stopped
     depends_on:
       ns-setup:
