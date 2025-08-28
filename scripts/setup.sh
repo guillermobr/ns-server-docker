@@ -72,6 +72,13 @@ trainmap "tr_tau"
 icon "ns"
 EOF
 
+# Verify the liblist.gam file
+echo "Verifying liblist.gam content:"
+echo "File size: $(wc -c < /temp/mods/ns/liblist.gam) bytes"
+echo "Content:"
+cat /temp/mods/ns/liblist.gam
+echo "--- End of liblist.gam ---"
+
 echo "✓ Metamod configuration created"
 
 # Install AMX Mod X
@@ -80,22 +87,28 @@ if [ ! -f /temp/mods/ns/addons/amxmodx/dlls/amxmodx_mm_i386.so ]; then
   mkdir -p /temp/mods/ns/addons/amxmodx
 
   # Download base package
-  echo "Downloading AMX Mod X base..."
-  wget -q https://www.amxmodx.org/amxxdrop/1.9/amxmodx-1.9.0-git5294-base-linux.tar.gz -O /tmp/amxx-base.tar.gz
+  if [ ! -f /tmp/amxx-base.tar.gz ]; then
+    echo "Downloading AMX Mod X base..."
+    wget -q https://www.amxmodx.org/amxxdrop/1.9/amxmodx-1.9.0-git5294-base-linux.tar.gz -O /tmp/amxx-base.tar.gz
+  else
+    echo "✓ Using existing AMX Mod X base download"
+  fi
   if [ -f /tmp/amxx-base.tar.gz ] && [ -s /tmp/amxx-base.tar.gz ]; then
     tar -xzf /tmp/amxx-base.tar.gz -C /temp/mods/ns/addons/amxmodx --strip-components=1
-    rm /tmp/amxx-base.tar.gz
     echo "✓ Base package extracted"
   else
     echo "Failed to download AMX Mod X base package"
   fi
 
   # Download Half-Life addon
-  echo "Downloading AMX Mod X Half-Life addon..."
-  wget -q https://www.amxmodx.org/amxxdrop/1.9/amxmodx-1.9.0-git5294-hlsdk-linux.tar.gz -O /tmp/amxx-hl.tar.gz
+  if [ ! -f /tmp/amxx-hl.tar.gz ]; then
+    echo "Downloading AMX Mod X Half-Life addon..."
+    wget -q https://www.amxmodx.org/amxxdrop/1.9/amxmodx-1.9.0-git5294-hlsdk-linux.tar.gz -O /tmp/amxx-hl.tar.gz
+  else
+    echo "✓ Using existing AMX Mod X Half-Life download"
+  fi
   if [ -f /tmp/amxx-hl.tar.gz ] && [ -s /tmp/amxx-hl.tar.gz ]; then
     tar -xzf /tmp/amxx-hl.tar.gz -C /temp/mods/ns/addons/amxmodx --strip-components=1
-    rm /tmp/amxx-hl.tar.gz
     echo "✓ Half-Life addon extracted"
   else
     echo "Failed to download AMX Mod X Half-Life addon"
