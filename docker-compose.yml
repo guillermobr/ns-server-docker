@@ -33,6 +33,9 @@ services:
     restart: unless-stopped
     networks:
       - ns-network
+    depends_on:
+      ns-setup:
+        condition: service_completed_successfully
 
 networks:
   ns-network:
