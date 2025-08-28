@@ -1,0 +1,12 @@
+ns_eclipse
+ns_hera
+ns_nancy
+ns_nothing
+ns_caged
+ns_tanith
+ns_bast
+ns_origin
+ns_veil
+ns_metal
+ns_ayumi
+ns_machina

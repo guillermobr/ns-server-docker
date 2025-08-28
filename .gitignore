@@ -1,0 +1,17 @@
+# Data directory - contains downloaded NS mod files
+data/
+
+# Logs directory - contains server log files
+logs/
+
+# Docker volumes
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
